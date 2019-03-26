@@ -790,12 +790,12 @@ void uFR_Readers_toolFrame::OnbtnFactoryResetClick(wxCommandEvent& event)
     memset(userData, 0, 16);
     memset(key, 255, 6);
 
-        status[0] = AutoSleepSet(0);
-        InfoTB -> AppendText("AutoSleepSet(0)  ->  " + (std::string)UFR_Status2String(status[0]) + "\n");
+        status[0] = UfrLeaveSleepMode();
+        InfoTB -> AppendText("UfrLeaveSleepMode()  ->  " + (std::string)UFR_Status2String(status[0]) + "\n");
         Sleep(200);
 
-        status[1] = UfrLeaveSleepMode();
-        InfoTB -> AppendText("UfrLeaveSleepMode()  ->  " + (std::string)UFR_Status2String(status[1]) + "\n");
+        status[1] = AutoSleepSet(0);
+        InfoTB -> AppendText("AutoSleepSet(0)  ->  " + (std::string)UFR_Status2String(status[1]) + "\n");
         Sleep(200);
 
         status[2] = TagEmulationStop();
