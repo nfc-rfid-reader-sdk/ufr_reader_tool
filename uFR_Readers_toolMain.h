@@ -6,7 +6,7 @@
  * Copyright: Aleksandar Krstic (www.d-logic.net)
  * License:
  **************************************************************/
-#include "ufr-lib/include/uFCoder.h"
+#include "lib/include/uFCoder.h"
 #ifndef UFR_READERS_TOOLMAIN_H
 #define UFR_READERS_TOOLMAIN_H
 
@@ -76,6 +76,8 @@ class uFR_Readers_toolFrame: public wxFrame
         static const long ID_STATICTEXT19;
         static const long ID_COMBOBOX5;
         static const long ID_BUTTON18;
+        static const long ID_STATICTEXT22;
+        static const long ID_TEXTCTRL14;
         static const long ID_STATICTEXT20;
         static const long ID_TEXTCTRL12;
         static const long ID_STATICTEXT21;
@@ -124,6 +126,7 @@ class uFR_Readers_toolFrame: public wxFrame
         //(*Declarations(uFR_Readers_toolFrame)
         wxStaticText* StaticText10;
         wxStaticText* StaticText9;
+        wxStaticText* StaticText20;
         wxButton* btnCheckConnection;
         wxTextCtrl* LockPassTB;
         wxButton* btnSetSpeedPermanently;
@@ -171,6 +174,7 @@ class uFR_Readers_toolFrame: public wxFrame
         wxStaticText* StaticText12;
         wxButton* btnLeaveSleepMode;
         wxButton* btnUnlockKeys;
+        wxTextCtrl* ReaderTypeResetBR;
         wxComboBox* RXCB;
         wxButton* btnGetSpeed;
         wxButton* btnSetAutoSleep;

@@ -56,9 +56,9 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-Wall" />
 			<Add option="-pipe" />
 			<Add option="-mthreads" />
-			<Add option="-Wall" />
 			<Add option="-D__GNUWIN32__" />
 			<Add option="-D__WXMSW__" />
 			<Add option="-DwxUSE_UNICODE" />
@@ -84,8 +84,10 @@
 			<Add library="libodbc32.a" />
 			<Add library="libuFCoder-x86.a" />
 			<Add library="libws2_32.a" />
-			<Add library="ufr-lib/windows/static-x86/ftd2xx.lib" />
-			<Add directory="ufr-lib/windows/static-x86" />
+			<Add library="lib/windows/static-x86/ftd2xx_coff.lib" />
+			<Add library="lib/windows/static-x86/libtomcrypt.a" />
+			<Add library="lib/windows/static-x86/libtommath.a" />
+			<Add directory="lib/windows/static-x86" />
 		</Linker>
 		<Unit filename="ftd2xx.h" />
 		<Unit filename="resource.rc">

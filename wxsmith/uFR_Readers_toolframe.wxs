@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
 	<object class="wxFrame" name="uFR_Readers_toolFrame">
+		<title>UFR READERS TOOL version 1.1</title>
 		<bg>wxSYS_COLOUR_WINDOW</bg>
 		<id_arg>0</id_arg>
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
@@ -210,19 +211,15 @@
 									<object class="sizeritem">
 										<object class="wxComboBox" name="ID_COMBOBOX5" variable="NewBaudCB" member="yes">
 											<content>
-												<item>2400 bps</item>
-												<item>4800 bps</item>
 												<item>9600 bps</item>
 												<item>19200 bps</item>
 												<item>38400 bps</item>
 												<item>57600 bps</item>
 												<item>115200 bps</item>
-												<item>230400 bps</item>
+												<item>234000 bps</item>
 												<item>460800 bps</item>
 												<item>500000 bps</item>
-												<item>576000 bps</item>
-												<item>921600 bps</item>
-												<item>1000000 bps</item>
+												<item>1 Mbps</item>
 											</content>
 											<selection>0</selection>
 											<style>wxCB_READONLY</style>
@@ -249,6 +246,21 @@
 								<object class="wxStaticBoxSizer" variable="StaticBoxSizer8" member="no">
 									<label>Baud rate reset</label>
 									<object class="sizeritem">
+										<object class="wxStaticText" name="ID_STATICTEXT22" variable="StaticText20" member="yes">
+											<label>reader type</label>
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+									</object>
+									<object class="sizeritem">
+										<object class="wxTextCtrl" name="ID_TEXTCTRL14" variable="ReaderTypeResetBR" member="yes">
+											<size>37,24</size>
+										</object>
+										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+										<border>5</border>
+										<option>1</option>
+									</object>
+									<object class="sizeritem">
 										<object class="wxStaticText" name="ID_STATICTEXT20" variable="StaticText18" member="yes">
 											<label>COM:</label>
 										</object>
@@ -269,7 +281,6 @@
 										</object>
 										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 										<border>3</border>
-										<option>1</option>
 									</object>
 									<object class="sizeritem">
 										<object class="wxStaticText" name="ID_STATICTEXT21" variable="StaticText19" member="yes">

@@ -14,7 +14,7 @@
 #endif
 #include "uFR_Readers_toolMain.h"
 #include <wx/msgdlg.h>
-#include "ufr-lib/include/uFCoder.h"
+#include "lib/include/uFCoder.h"
 #include "ftd2xx.h"
 #include <string.h>
 #include <string>
@@ -38,6 +38,7 @@ baudRate[10] = 576000;
 baudRate[11] = 921600;
 baudRate[12] = 1000000;*/
 
+/*
 std::map<int, uint32_t> baudRate = {
                                     {0, 2400},
                                     {1, 4800},
@@ -53,7 +54,7 @@ std::map<int, uint32_t> baudRate = {
                                     {11, 921600},
                                     {12, 1000000}
                                    };
-
+*/
 
 void ConvertStringToUint8Array(std::string str, uint8_t *array)
 {
@@ -128,6 +129,8 @@ const long uFR_Readers_toolFrame::ID_BUTTON7 = wxNewId();
 const long uFR_Readers_toolFrame::ID_STATICTEXT19 = wxNewId();
 const long uFR_Readers_toolFrame::ID_COMBOBOX5 = wxNewId();
 const long uFR_Readers_toolFrame::ID_BUTTON18 = wxNewId();
+const long uFR_Readers_toolFrame::ID_STATICTEXT22 = wxNewId();
+const long uFR_Readers_toolFrame::ID_TEXTCTRL14 = wxNewId();
 const long uFR_Readers_toolFrame::ID_STATICTEXT20 = wxNewId();
 const long uFR_Readers_toolFrame::ID_TEXTCTRL12 = wxNewId();
 const long uFR_Readers_toolFrame::ID_STATICTEXT21 = wxNewId();
@@ -211,7 +214,7 @@ uFR_Readers_toolFrame::uFR_Readers_toolFrame(wxWindow* parent,wxWindowID id)
     wxMenu* Menu2;
     wxStaticBoxSizer* StaticBoxSizer5;
 
-    Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+    Create(parent, wxID_ANY, _("UFR READERS TOOL version 1.1"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
     SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
     BoxSizer1 = new wxBoxSizer(wxVERTICAL);
     StaticBoxSizer1 = new wxStaticBoxSizer(wxVERTICAL, this, _("Reader commands"));
@@ -267,30 +270,30 @@ uFR_Readers_toolFrame::uFR_Readers_toolFrame(wxWindow* parent,wxWindowID id)
     StaticText17 = new wxStaticText(this, ID_STATICTEXT19, _("New baud rate: "), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT19"));
     StaticBoxSizer7->Add(StaticText17, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 3);
     NewBaudCB = new wxComboBox(this, ID_COMBOBOX5, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, wxCB_READONLY, wxDefaultValidator, _T("ID_COMBOBOX5"));
-    NewBaudCB->SetSelection( NewBaudCB->Append(_("2400 bps")) );
-    NewBaudCB->Append(_("4800 bps"));
-    NewBaudCB->Append(_("9600 bps"));
+    NewBaudCB->SetSelection( NewBaudCB->Append(_("9600 bps")) );
     NewBaudCB->Append(_("19200 bps"));
     NewBaudCB->Append(_("38400 bps"));
     NewBaudCB->Append(_("57600 bps"));
     NewBaudCB->Append(_("115200 bps"));
-    NewBaudCB->Append(_("230400 bps"));
+    NewBaudCB->Append(_("234000 bps"));
     NewBaudCB->Append(_("460800 bps"));
     NewBaudCB->Append(_("500000 bps"));
-    NewBaudCB->Append(_("576000 bps"));
-    NewBaudCB->Append(_("921600 bps"));
-    NewBaudCB->Append(_("1000000 bps"));
+    NewBaudCB->Append(_("1 Mbps"));
     StaticBoxSizer7->Add(NewBaudCB, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 3);
     bEnterNewBaudRate = new wxButton(this, ID_BUTTON18, _("Enter new baud rate"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON18"));
     StaticBoxSizer7->Add(bEnterNewBaudRate, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 3);
     BoxSizer16->Add(StaticBoxSizer7, 1, wxALL|wxEXPAND, 3);
     StaticBoxSizer8 = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Baud rate reset"));
+    StaticText20 = new wxStaticText(this, ID_STATICTEXT22, _("reader type"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT22"));
+    StaticBoxSizer8->Add(StaticText20, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    ReaderTypeResetBR = new wxTextCtrl(this, ID_TEXTCTRL14, wxEmptyString, wxDefaultPosition, wxSize(37,24), 0, wxDefaultValidator, _T("ID_TEXTCTRL14"));
+    StaticBoxSizer8->Add(ReaderTypeResetBR, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticText18 = new wxStaticText(this, ID_STATICTEXT20, _("COM:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT20"));
     StaticBoxSizer8->Add(StaticText18, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 3);
     COMResetBR = new wxTextCtrl(this, ID_TEXTCTRL12, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_CENTRE, wxDefaultValidator, _T("ID_TEXTCTRL12"));
     wxFont COMResetBRFont(10,wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,_T("Courier New"),wxFONTENCODING_DEFAULT);
     COMResetBR->SetFont(COMResetBRFont);
-    StaticBoxSizer8->Add(COMResetBR, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 3);
+    StaticBoxSizer8->Add(COMResetBR, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 3);
     StaticText19 = new wxStaticText(this, ID_STATICTEXT21, _("port interface:"), wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT21"));
     StaticBoxSizer8->Add(StaticText19, 0, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 3);
     PortInterfaceResetBR = new wxTextCtrl(this, ID_TEXTCTRL13, wxEmptyString, wxDefaultPosition, wxSize(37,24), wxTE_CENTRE, wxDefaultValidator, _T("ID_TEXTCTRL13"));
@@ -784,11 +787,13 @@ void uFR_Readers_toolFrame::OnbtnFactoryResetClick(wxCommandEvent& event)
 {
     InfoTB -> Clear();
 
-    UFR_STATUS status[6];
+    UFR_STATUS status[7];
     uint8_t userData[16];
     uint8_t key[6];
+    uint8_t aes_key[16];
     memset(userData, 0, 16);
     memset(key, 255, 6);
+    memset(aes_key, 0, 16);
 
         status[0] = UfrLeaveSleepMode();
         InfoTB -> AppendText("UfrLeaveSleepMode()  ->  " + (std::string)UFR_Status2String(status[0]) + "\n");
@@ -824,7 +829,22 @@ void uFR_Readers_toolFrame::OnbtnFactoryResetClick(wxCommandEvent& event)
             Sleep(200);
         }
 
-        if(status[0] == UFR_OK && status[1] == UFR_OK && status[2] == UFR_OK && status[3] == UFR_OK && status[4] == UFR_OK)
+        for(uint8_t i = 0; i < 16; i++)
+        {
+            status[6] = uFR_int_DesfireWriteAesKey(i, aes_key);
+            wxString wxIndex = "";
+            wxIndex << (int)i;
+            InfoTB -> AppendText("[Aes key index : " + wxIndex + ", key : 0x00000000000000000000000000000000] ReaderKeyWrite()  ->  " + (std::string)UFR_Status2String(status[6]) + "\n");
+
+            if(status[6])
+            {
+                break;
+            }
+            Sleep(200);
+        }
+
+
+        if(status[0] == UFR_OK && status[1] == UFR_OK && status[2] == UFR_OK && status[3] == UFR_OK && status[4] == UFR_OK && status[5] == UFR_OK && status[6] == UFR_OK)
         {
             setStatusColor(UFR_OK);
             StatusLabel -> SetLabel("FACTORY RESET -> UFR_OK");
@@ -841,6 +861,8 @@ void uFR_Readers_toolFrame::OnbtnFactoryResetClick(wxCommandEvent& event)
 
 void uFR_Readers_toolFrame::OnbEnterNewBaudRateClick(wxCommandEvent& event)
 {
+    uint32_t baud_rate[] = {9600, 19200, 38400, 57600, 115200, 230400, 460800, 500000, 1000000};
+
     uint8_t ver_major, ver_minor;
     status = GetReaderHardwareVersion(&ver_major, &ver_minor);
 
@@ -850,6 +872,14 @@ void uFR_Readers_toolFrame::OnbEnterNewBaudRateClick(wxCommandEvent& event)
         StatusLabel -> SetLabel("ReaderChangeBaudrate() -> " + (std::string)UFR_Status2String(status));
         return;
     }
+
+    uint32_t baud = NewBaudCB->GetSelection();
+
+    status = SetUartSpeed(baud_rate[baud]);
+
+    setStatusColor(status);
+    StatusLabel -> SetLabel("SetUartSpeed() -> " + (std::string)UFR_Status2String(status));
+    /*
 
     if(ver_minor == 24 || ver_minor == 34)
     {
@@ -866,17 +896,23 @@ void uFR_Readers_toolFrame::OnbEnterNewBaudRateClick(wxCommandEvent& event)
         setStatusColor((UFR_STATUS)1);
         StatusLabel -> SetLabel("ReaderChangeBaudrate() -> UNSUPPORTED DEVICE TYPE");
     }
+    */
 }
 
 void uFR_Readers_toolFrame::OnbResetBaudRateToDefaultClick(wxCommandEvent& event)
 {
     wxString wxCOM = COMResetBR->GetValue();
     wxCOM = wxCOM.Trim();
-    c_string com_port = wxCOM.c_str();
+    c_string com_port = 0;
+    if(wxCOM.c_str() != "0")
+        com_port = wxCOM.c_str();
 
     wxString wxPortInterface = PortInterfaceResetBR->GetValue();
     wxPortInterface = wxPortInterface.Trim();
     uint32_t port_interface = wxAtoi(wxPortInterface);
+    wxString wxReaderType = ReaderTypeResetBR->GetValue();
+    wxReaderType = wxReaderType.Trim();
+    uint32_t reader_type = wxAtoi(wxReaderType);
 
     if(wxCOM == "" || wxPortInterface == "")
     {
@@ -884,7 +920,8 @@ void uFR_Readers_toolFrame::OnbResetBaudRateToDefaultClick(wxCommandEvent& event
         return;
     }
 
-    status = uFR_set_default_baudrate(com_port, port_interface);
+    //status = uFR_set_default_baudrate(com_port, port_interface);
+    status = SetDefaultUartSpeed(reader_type, port_interface, com_port);
 
     setStatusColor(status);
     StatusLabel -> SetLabel("uFR_set_default_baudrate() -> " + (std::string)UFR_Status2String(status));
